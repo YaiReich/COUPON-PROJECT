@@ -1,0 +1,17 @@
+        *************** Beginning of data *************************************
+0001.00 FCOMPF     UF A E           K DISK                                     
+0002.00 FDCOMP     CF   E             WORKSTN                                  
+0003.00 F                                     SFILE(SFLR:RRN)                  
+0004.00 C*                                                                     
+0004.02 C     *IN03         DOWEQ     *OFF                                     
+0004.03 C                   SETON                                        0850  
+0004.04 C                   WRITE     TOP                                      
+0004.11 C                   WRITE     BOT                                      
+0004.12 C                   EXSR      STRSFL                                   
+0004.13 C                   EXFMT     SFLCTL                                   
+0004.14 C                   SETOFF                                       3133  
+0004.15 C                   SETOFF                                         50  
+0004.17 C*                                                                     
+0004.18 C     *IN06         IFEQ      *ON                                      
+0004.19 C                   EXSR      ADDNEW                                   
+0004.20 C                   ELSE                                               
