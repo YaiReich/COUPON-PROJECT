@@ -1,0 +1,106 @@
+        *************** Beginning of data ***********************************
+0001.00 FCUSTPF    UF A E           K DISK                                   
+0002.00 FDCUST     CF   E             WORKSTN                                
+0003.00 F                                     SFILE(SFLR:RRN)                
+0004.00 C*                                                                   
+0004.01 C                   WRITE     TOP                                    
+0004.02 C     *IN03         DOWEQ     *OFF                                   
+0004.03 C                   SETON                                        0850
+0004.11 C                   WRITE     BOT                                    
+0004.12 C                   EXSR      STRSFL                                 
+0004.13 C                   EXFMT     SFLCTL                                 
+0004.14 C                   SETOFF                                       3133
+0004.15 C                   SETOFF                                         50
+0004.17 C*                                                                   
+0004.18 C     *IN06         IFEQ      *ON                                    
+0004.19 C                   EXSR      ADDNEW                                 
+0004.20 C                   ELSE                                             
+0004.23 C                   EXSR      MENU                                    
+0004.25 C                   ENDIF                                             
+0004.26 C*                                                                    
+0004.27 C                   ENDDO                                             
+0004.36 C                   SETON                                        LR   
+0004.37 C*                                                                    
+0004.38 C     STRSFL        BEGSR                                             
+0004.39 C                   SETON                                        3234 
+0004.40 C                   WRITE     SFLCTL                                  
+0004.41 C                   SETOFF                                       34     
+0004.42 C                   Z-ADD     0             RRN               4 0       
+0004.43 C     *LOVAL        SETLL     RCUST                              9999   
+0004.44 C                   READ      RCUST                                9999 
+0004.45 C     *IN99         DOWEQ     *OFF                                      
+0004.46 C                   MOVE      *BLANKS       OP                          
+0004.47 C                   ADD       1             RRN                         
+0004.48 C                   WRITE     SFLR                                      
+0004.49 C                   READ      RCUST                                9999 
+0004.50 C                   ENDDO                                               
+0004.51 C*                                                                      
+0004.52 C     RRN           IFGT      0                                         
+0004.53 C                   SETON                                        3133   
+0004.54 C                   Z-ADD     1             POS                         
+0004.55 C                   ENDIF                                               
+0004.56 C                   ENDSR                                               
+0005.00 C*                                                                      
+0005.01 C     MENU          BEGSR                                               
+0005.03 C                   READC     SFLR                                 9999 
+0005.04 C     *IN99         DOWEQ     *OFF                                      
+0005.05 C     OP            IFEQ      '2'                                       
+0005.06 C                   EXSR      UPDATECUST                                
+0005.07 C                   ENDIF                                               
+0005.08 C     OP            IFEQ      '4'                                       
+0005.09 C                   EXSR      DELETECUST                                
+0005.10 C                   ENDIF                                               
+0005.11 C                   READC     SFLR                                 9999 
+0005.12 C                   ENDDO                                               
+0005.13 C                   ENDSR                                               
+0005.14 C*                                                                      
+0006.00 C     ADDNEW        BEGSR
+0006.01 C                   SETON                                        56     
+0006.04 C                   WRITE     BOT                                       
+0006.05 C                   EXSR      CLEAN                                     
+0006.06 C     *IN03         DOWEQ     *OFF                                      
+0006.07 C     *IN12         ANDEQ     *OFF                                      
+0006.08 C     *IN02         ANDEQ     *OFF                                      
+0006.09 C                   EXFMT     FIELDS                                    
+0006.10 C   02              DO                                                  
+0006.11 C     CSTID         SETLL     RCUST                                  13 
+0006.12 C  N13              WRITE     RCUST                                     
+0006.13 C   13              SETOFF                                       02     
+0006.14 C                   ENDDO                                               
+0006.15 C                   ENDDO                                               
+0006.16 C                   SETOFF                                       56     
+0007.00 C                   ENDSR                                               
+0008.00 C*                              
+0008.02 C     UPDATECUST    BEGSR                                             
+0008.03 C                   SETON                                        52   
+0008.05 C                   WRITE     BOT                                     
+0008.06 C     *IN03         DOWEQ     *OFF                                    
+0008.07 C     *IN12         ANDEQ     *OFF                                    
+0008.08 C     *IN02         ANDEQ     *OFF                                    
+0008.09 C     CSTID         CHAIN     RCUST                              1111 
+0008.10 C                   EXFMT     FIELDS                                  
+0008.11 C   02              DO                                                
+0008.12 C  N11              UPDATE    RCUST                                   
+0008.13 C   11              SETOFF                                       02   
+0008.14 C                   ENDDO                                             
+0008.15 C                   ENDDO                                             
+0008.16 C                   SETOFF                                       52   
+0008.17 C                   ENDSR                                             
+0008.18 C*              
+0009.00 C     DELETECUST    BEGSR                                               
+0009.01 C                   SETON                                        54     
+0011.00 C                   WRITE     BOT                                       
+0011.01 C                   EXFMT     FIELDS                                    
+0011.02 C   02              DO                                                  
+0011.03 C     CSTID         CHAIN     RCUST                              1111   
+0011.04 C  N11              DELETE    RCUST                                     
+0011.05 C                   ENDDO                                               
+0011.06 C                   SETOFF                                       54     
+0012.00 C                   ENDSR                                               
+0013.00 C*                                                                      
+0014.00 C     CLEAN         BEGSR                                               
+0014.01 C                   MOVE      *BLANKS       CSTID                       
+0014.02 C                   MOVE      *BLANKS       CSTNAME                     
+0014.03 C                   Z-ADD     0             CSTTEL                      
+0015.00 C                   ENDSR                                               
+        ****************** End of data **************************************** 
