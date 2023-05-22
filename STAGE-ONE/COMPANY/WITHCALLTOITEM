@@ -15,3 +15,39 @@
 0004.18 C     *IN06         IFEQ      *ON                                      
 0004.19 C                   EXSR      ADDNEW                                   
 0004.20 C                   ELSE                                               
+0004.23 C                   EXSR      MENU                                      
+0004.25 C                   ENDIF                                               
+0004.26 C*                                                                      
+0004.27 C                   ENDDO                                               
+0004.36 C                   SETON                                        LR     
+0004.37 C*                                                                      
+0004.38 C     STRSFL        BEGSR                                               
+0004.39 C                   SETON                                        3234   
+0004.40 C                   WRITE     SFLCTL                                    
+0004.41 C                   SETOFF                                       34     
+0004.42 C                   Z-ADD     0             RRN               4 0       
+0004.43 C     *LOVAL        SETLL     RCOMP                              9999   
+0004.44 C                   READ      RCOMP                                9999 
+0004.45 C     *IN99         DOWEQ     *OFF                                     
+0004.46 C                   MOVE      *BLANKS       OP                         
+0004.47 C                   ADD       1             RRN                        
+0004.48 C                   WRITE     SFLR                                     
+0004.49 C                   READ      RCOMP                                9999
+0004.50 C                   ENDDO                                              
+0004.51 C*                                                                     
+0004.52 C     RRN           IFGT      0                                        
+0004.53 C                   SETON                                        3133  
+0004.54 C                   Z-ADD     1             POS                        
+0004.55 C                   ENDIF                                              
+0004.56 C                   ENDSR                                              
+0005.00 C*                                                                     
+0005.01 C     MENU          BEGSR                                              
+0005.03 C                   READC     SFLR                                 9999
+0005.04 C     *IN99         DOWEQ     *OFF                                     
+0005.05 C     OP            IFEQ      '2'                                      
+0005.06 C                   EXSR      UPDATECO                                 
+0005.07 C                   ENDIF                                              
+0005.08 C     OP            IFEQ      '4'                                      
+0005.09 C                   EXSR      DELETECO                                 
+0005.10 C                   ENDIF                                              
+0005.11 C     OP            IFEQ      '7'                                                                                        
