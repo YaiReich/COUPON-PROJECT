@@ -112,8 +112,4 @@
 0016.02 C                   CALL      'RITEM'       SEND1P                      
 0016.03 C                   ENDSR                                               
 0016.04 C*                                                                      
-0017.00 C     *INZSR        BEGSR                                               
-0018.00 C     SEND1P        PLIST                                               
-0019.00 C                   PARM                    CMID                        
-0020.00 C                   ENDSR                                               
-        ****************** End of data **************************************** 
+
