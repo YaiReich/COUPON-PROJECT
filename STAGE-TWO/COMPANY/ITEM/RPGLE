@@ -9,7 +9,7 @@
 0005.02 C     CMID          CHAIN     RCOMP                              9898   
 0007.00 C     *IN03         DOWEQ     *OFF                                      
 0008.00 C                   SETON                                        50     
-0009.00 C                                                                       
+0009.00 C                   WRITE     TOP                                       
 0010.00 C                   WRITE     BOT                                       
 0011.00 C                   EXSR      STRSFL                                    
 0012.00 C                   EXFMT     ITMCTL                                    
