@@ -1,0 +1,17 @@
+        *************** Beginning of data ************************************* 
+0001.00 FITMF      UF A E           K DISK                                      
+0001.01 FITMLF1    IF A E           K DISK    RENAME(RITM:RITML)                
+0002.00 FCOMPF     IF   E           K DISK                                      
+0003.00 FDITEM     CF   E             WORKSTN                                   
+0004.00 F                                     SFILE(ITMSFLR:RRN)                
+0005.00 F                                     SFILE(COMPSFLR:CRRN)              
+0005.01 C*                                                                      
+0005.02 C     CMID          CHAIN     RCOMP                              9898   
+0007.00 C     *IN03         DOWEQ     *OFF                                      
+0008.00 C                   SETON                                        50     
+0009.00 C                                                                       
+0010.00 C                   WRITE     BOT                                       
+0011.00 C                   EXSR      STRSFL                                    
+0012.00 C                   EXFMT     ITMCTL                                    
+0013.00 C                   SETOFF                                       313350 
+0014.00 C     *IN06         IFEQ      *ON                                       
