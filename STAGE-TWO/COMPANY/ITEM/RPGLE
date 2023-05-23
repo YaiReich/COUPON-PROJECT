@@ -15,3 +15,142 @@
 0012.00 C                   EXFMT     ITMCTL                                    
 0013.00 C                   SETOFF                                       313350 
 0014.00 C     *IN06         IFEQ      *ON                                       
+0015.00 C                   EXSR      ADDNEW                                   
+0016.00 C                   ELSE                                               
+0017.00 C                   EXSR      MENU                                     
+0018.00 C                   ENDIF                                              
+0019.00 C                   ENDDO                                              
+0020.00 C                   SETON                                        LR    
+0021.00 C*                                                                     
+0022.00 C     STRSFL        BEGSR                                              
+0023.00 C                   SETON                                        3234  
+0024.00 C                   WRITE     ITMCTL                                   
+0025.00 C                   SETOFF                                       34    
+0026.00 C                   Z-ADD     0             RRN               4 0      
+0027.00 C     CMID          CHAIN     RITML                              9999  
+0030.00 C     *IN99         DOWEQ     *OFF                                     
+0031.00 C                   MOVE      *BLANKS       OP                         
+0032.00 C                   ADD       1             RRN   
+0033.00 C                   WRITE     ITMSFLR                                  
+0034.00 C     CMID          READE     RITML                                9999
+0036.00 C                   ENDDO                                              
+0036.01 C*                                                                     
+0037.00 C     RRN           IFGT      0                                        
+0038.00 C                   SETON                                        3133  
+0039.00 C                   Z-ADD     1             POS                        
+0040.00 C                   ENDIF                                              
+0041.00 C                   ENDSR                                              
+0042.00 C*                                                                     
+0043.00 C     MENU          BEGSR                                              
+0044.00 C                   READC     ITMSFLR                              9999
+0045.00 C     *IN99         DOWEQ     *OFF                                     
+0046.00 C     OP            IFEQ      '2'                                      
+0047.00 C                   EXSR      UPDATE1                                  
+0048.00 C                   ENDIF                                    
+0049.00 C     OP            IFEQ      '4'                                       
+0050.00 C                   EXSR      DELETE1                                   
+0051.00 C                   ENDIF                                               
+0052.00 C                   READC     ITMSFLR                              9999 
+0053.00 C                   ENDDO                                               
+0054.00 C                   ENDSR                                               
+0055.00 C*                                                                      
+0056.00 C     ADDNEW        BEGSR                                               
+0057.00 C                   SETON                                        56     
+0058.00 C                   WRITE     TOP                                       
+0059.00 C                   WRITE     BOT                                       
+0060.00 C                   EXSR      EMPTY                                     
+0061.00 C     *IN03         DOWEQ     *OFF                                      
+0062.00 C     *IN12         ANDEQ     *OFF                                      
+0063.00 C     *IN02         ANDEQ     *OFF                                      
+0064.00 C                   EXFMT     FIELDS  
+0065.00 C   09              EXSR      COMPSFL                                   
+0066.00 C   02              DO                                                  
+0067.00 C     CMID          CHAIN     RCOMP                              1717   
+0068.00 C     *IN17         IFEQ      *OFF                                      
+0069.00 C     ITID          SETLL     RITM                                   13 
+0070.00 C  N13              WRITE     RITM                                      
+0071.00 C                   ENDIF                                               
+0072.00 C                   ENDDO                                               
+0073.00 C     *IN17         IFEQ      *ON                                       
+0074.00 C     *IN13         OREQ      *ON                                       
+0075.00 C                   SETOFF                                       02     
+0076.00 C                   ENDIF                                               
+0077.00 C                   ENDDO                                               
+0078.00 C                   ENDSR                                               
+0079.00 C*                                                                      
+0080.00 C     UPDATE1       BEGSR    
+0081.00 C                   SETON                                        52    
+0082.00 C                   WRITE     TOP                                      
+0083.00 C                   WRITE     BOT                                      
+0084.00 C     *IN03         DOWEQ     *OFF                                     
+0085.00 C     *IN12         ANDEQ     *OFF                                     
+0086.00 C     *IN02         ANDEQ     *OFF                                     
+0087.00 C     ITID          CHAIN     RITM                               1111  
+0088.00 C                   EXFMT     FIELDS                                   
+0089.00 C   09              EXSR      COMPSFL                                  
+0090.00 C   02              DO                                                 
+0091.00 C     CMID          CHAIN     RCOMP                              1717  
+0092.00 C     *IN11         IFEQ      *OFF                                     
+0093.00 C     *IN17         ANDEQ     *OFF                                     
+0094.00 C                   UPDATE    RITM                                     
+0095.00 C                   ENDIF                                              
+0096.00 C                   ENDDO                         
+0097.00 C     *IN17         IFEQ      *ON                                       
+0098.00 C     *IN11         OREQ      *ON                                       
+0099.00 C                   SETOFF                                       02     
+0100.00 C                   ENDIF                                               
+0101.00 C                   ENDDO                                               
+0102.00 C                   SETOFF                                       52     
+0103.00 C                   ENDSR                                               
+0104.00 C*                                                                      
+0105.00 C     DELETE1       BEGSR                                               
+0106.00 C                   SETON                                        54     
+0107.00 C                   WRITE     TOP                                       
+0108.00 C                   WRITE     BOT                                       
+0109.00 C                   EXFMT     FIELDS                                    
+0110.00 C   02              DO                                                  
+0111.00 C     CMID          CHAIN     RCOMP                              1717   
+0112.00 C     ITID          CHAIN     RITM                               1111   
+0113.00 C     *IN11         IFEQ      *OFF                                      
+0114.00 C     *IN17         ANDEQ     *OFF                                      
+0115.00 C                   DELETE    RITM                                      
+0116.00 C                   ENDIF                                               
+0117.00 C                   ENDDO                                               
+0118.00 C                   SETOFF                                       54     
+0119.00 C                   ENDSR                                               
+0120.00 C*                                                                      
+0121.00 C     COMPSFL       BEGSR                                               
+0122.00 C                   SETON                                        3234   
+0123.00 C                   WRITE     COMPCTL                                   
+0124.00 C                   SETOFF                                       34     
+0125.00 C                   Z-ADD     0             CRRN              4 0       
+0126.00 C     *LOVAL        SETLL     RCOMP                              9999   
+0127.00 C                   READ      RCOMP                                9999 
+0128.00 C     *IN99         DOWEQ     *OFF                                      
+0129.00 C                   MOVE      *BLANKS       OP                          
+0130.00 C                   ADD       1             CRRN                        
+0131.00 C                   WRITE     COMPSFLR                                  
+0132.00 C                   READ      RCOMP                                9999 
+0133.00 C                   ENDDO                                               
+0134.00 C     CRRN          IFGT      0                                         
+0135.00 C                   SETON                                        3133   
+0136.00 C                   Z-ADD     1             POS                         
+0137.00 C                   ENDIF                                               
+0138.00 C                   EXFMT     COMPCTL                                   
+0139.00 C                   SETOFF                                       3133   
+0140.00 C                   READC     COMPSFLR                             9999 
+0141.00 C  N99              MOVE      CMID          ICMID                       
+0142.00 C                   EXFMT     FIELDS                                    
+0143.00 C                   ENDSR                                               
+0144.00 C*                                                                      0145.00 C     EMPTY         BEGSR                                               
+0146.00 C                   MOVE      *BLANKS       ITID                        
+0147.00 C                   MOVEL(P)  'PRESS F9'    ICMID                       
+0148.00 C                   MOVEL(P)  'PRESS F9'    CMNAME                      
+0149.00 C                   MOVE      *BLANKS       ITNAME                      
+0150.00 C                   ENDSR                                               
+0151.00 C*                                                                      
+0152.00 C     *INZSR        BEGSR                                               
+0153.00 C     *ENTRY        PLIST                                               
+0154.00 C                   PARM                    CMID                        
+0155.00 C                   ENDSR                                               
+        ****************** End of data **************************************** 
