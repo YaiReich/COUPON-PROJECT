@@ -146,5 +146,12 @@
 0141.00 C  N99              MOVE      CMID          ICMID                       
 0142.00 C                   EXFMT     FIELDS                                    
 0143.00 C                   ENDSR                                               
-0144.00 C*                                                                      
+0144.00 C*                     
+0145.00 C     EMPTY         BEGSR                                               
+0146.00 C                   MOVE      *BLANKS       ITID                        
+0147.00 C                   MOVEL(P)  'PRESS F9'    ICMID                       
+0148.00 C                   MOVEL(P)  'PRESS F9'    CMNAME                      
+0149.00 C                   MOVE      *BLANKS       ITNAME                      
+0150.00 C                   ENDSR                                               
+        ****************** End of data **************************************** 
 
