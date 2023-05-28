@@ -1,0 +1,58 @@
+        *************** Beginning of data *************************************
+0001.01 FCPCOMPF   IF   E           K DISK                                     
+0005.00 FDCOUPON   CF   E             WORKSTN                                  
+0006.00 F                                     SFILE(SFL:RRN)                   
+0008.00 DDATE1            DS                                                   
+0009.00 DD1                              2  0                                  
+0010.00 DM1                              2  0                                  
+0011.00 DY1                              4  0                                  
+0012.00 DDATE2            DS                                                   
+0013.00 DD2                              2  0                                  
+0014.00 DS1                              1    INZ('/')                         
+0015.00 DM2                              2  0                                  
+0016.00 DS2                              1    INZ('/')                         
+0017.00 DY2                              4  0                                  
+0018.00 C*                                                                     
+0024.00 C     *IN03         DOWEQ     *OFF                                     
+0025.00 C*                  SETON                                        08    
+0026.00 C                   WRITE     TOP                                       
+0027.00 C                   WRITE     BOT                                       
+0029.00 C                   EXSR      FILLSFL                                   
+0030.00 C                   EXFMT     SFLCTL                                    
+0035.00 C                   SETOFF                                       3133   
+0037.00 C                   ENDDO                                               
+0038.00 C                   SETON                                        LR     
+0039.00 C*                                                                      
+0040.00 C     FILLSFL       BEGSR                                               
+0041.00 C                   SETON                                        3234   
+0041.01 C*                  SETOFF                                       3133   
+0042.00 C                   WRITE     SFLCTL                                    
+0043.00 C                   SETOFF                                       34     
+0044.00 C                   Z-ADD     0             RRN               4 0       
+0045.00 C     *LOVAL        SETLL     RCPCOMP                            9999   
+0046.00 C                   READ      RCPCOMP                              9999 
+0047.00 C     *IN99         DOWEQ     *OFF                                      
+0049.00 C                   MOVE      *BLANKS       OP                          
+0050.00 C                   MOVE      CPSDATE       DATE1                       
+0051.00 C                   EXSR      FILLDATE                                  
+0052.00 C                   MOVE      DATE2         STARTDATE                   
+0053.00 C                   MOVE      CPEDATE       DATE1                       
+0054.00 C                   EXSR      FILLDATE                                  
+0055.00 C                   MOVE      DATE2         ENDDATE                     
+0056.00 C                   ADD       1             RRN                         
+0056.01 C                   WRITE     SFL                                       
+0058.00 C                   READ      RCPCOMP                              9999 
+0060.00 C                   ENDDO                                               
+0060.01 C*                                                                      
+0060.02 C     RRN           IFGT      0                                         
+0060.03 C                   SETON                                        3133   
+0060.04 C                   Z-ADD     1             POS                         
+0060.05 C                   ENDIF                                               
+0060.06 C                   ENDSR           
+0066.00 C*                                                                      
+0092.00 C     FILLDATE      BEGSR                                               
+0093.00 C                   MOVE      D1            D2                          
+0094.00 C                   MOVE      M1            M2                          
+0095.00 C                   MOVE      Y1            Y2                          
+0096.00 C                   ENDSR                                               
+        ****************** End of data **************************************** 
