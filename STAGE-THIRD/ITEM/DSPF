@@ -1,0 +1,108 @@
+        *************** Beginning of data *************************************
+0000.10      A*%%TS  SD  20230529  121943  JBLTD10     REL-V7R5M0  5770-WDS    
+0000.20      A*%%EC                                                            
+0000.30      A                                      DSPSIZ(24 80 *DS3)         
+0000.40      A                                      CF02(02 'EXEC')            
+0000.50      A                                      CA03(03 'EXIT')            
+0000.60      A                                      CF06(06 'NEW')             
+0000.70      A                                      CF09(09 'COMPANIES')       
+0000.80      A                                      CA12(12 'CANCEL')          
+0000.90      A                                      CF14(14 'REVERSE')         
+0001.00      A          R TOP                                                  
+0001.10      A*%%TS  SD  20230523  090715  JBLTD10     REL-V7R5M0  5770-WDS    
+0001.20      A                                  3 25'ITEM LIST FOR COMPANY'    
+0001.30      A                                      DSPATR(UL)                 
+0001.40      A                                  1 65'DATE'                     
+0001.50      A                                      COLOR(RED)                 
+0001.60      A                                  1 70DATE      
+0001.70      A                                      EDTWRD('  /  /  ')          
+0001.80      A                                      COLOR(RED)                  
+0001.90      A            CMNAME        15   O  3 49COLOR(YLW)                  
+0002.00      A          R BOT                                                   
+0002.10      A*%%TS  SD  20230529  121943  JBLTD10     REL-V7R5M0  5770-WDS     
+0002.20      A                                      OVERLAY                     
+0002.30      A                                 20  2'-------------------------- 
+0002.40      A                                      --------------------------- 
+0002.50      A                                      --------'                   
+0002.60      A                                 21  3'F3-EXIT'             
+0002.70      A  50                             21 12'F6-ADD NEW'                
+0002.80      A  50                             23  3'2-UPDATE'                  
+0002.90      A  50                             23 14'4-DELETE'                  
+0003.00      A N50                             21 15'F2-COMMIT'                 
+0003.10      A                                 21 24'F12-CANCEL'                
+0003.11      A  56                             21 37'F9-SELECT COMPANY'         
+0003.20      A  50                             21 36'F14-REVERSE'               
+0003.30      A          R ITMSFLR                   SFL                         
+0003.40      A*%%TS  SD  20230523  090938  JBLTD10     REL-V7R5M0  5770-WDS     
+0003.50      A            OP             1A  B  7  8                            
+0003.60      A            ITID          10A  O  7 12                            
+0003.70      A*           CMNAME        15A  O  7 20                            
+0003.80      A            ITNAME        30A  O  7 25                            
+0003.90      A          R ITMCTL                    SFLCTL(ITMSFLR)             
+0004.00      A*%%TS  SD  20230529  105348  JBLTD10     REL-V7R5M0  5770-WDS     
+0004.10      A                                      OVERLAY                     
+0004.20      A  31                                  SFLDSP                      
+0004.30      A  32                                  SFLDSPCTL                   
+0004.40      A  34                                  SFLCLR                      
+0004.50      A  33                                  SFLEND(*MORE)       
+0004.60      A                                      SFLSIZ(0011)             
+0004.70      A                                      SFLPAG(0005)             
+0004.80      A            POS            4S 0H      SFLRCDNBR                
+0004.90      A                                  6  8'OP'                     
+0005.00      A                                      DSPATR(UL)               
+0005.10      A                                  6 12'ID'                     
+0005.20      A                                      DSPATR(UL)               
+0005.30      A                                  6 25'ITEM NAME'              
+0005.40      A                                      DSPATR(UL)               
+0005.50      A          R FIELDS                                             
+0005.60      A*%%TS  SD  20230523  084106  JBLTD10     REL-V7R5M0  5770-WDS  
+0005.70      A                                      OVERLAY              
+0005.80      A  52                              4  3'UPDATE ITEM:'       
+0005.90      A                                      DSPATR(UL)           
+0006.00      A  54                              4  3'DELETE ITEM:'       
+0006.10      A                                      DSPATR(UL)           
+0006.20      A  56                              4  3'ADD ITEM:'          
+0006.30      A                                      DSPATR(UL)           
+0006.40      A                                  7  4'ID:.........:'      
+0006.50      A                                  9  4'COMPANY ID..:'      
+0006.60      A                                 11  4'COMPANY NAME:'   
+0006.70      A                                 13  4'ITEM NAME...:'             
+0006.80      A            ITID          10A  B  7 18                            
+0006.90      A N56                                  DSPATR(PR)                  
+0007.00      A  11                                  ERRMSG('ID NOT FOUND' 11)   
+0007.10      A  13                                  ERRMSG('ID ALREADY EXISTS'  
+0007.20      A            ICMID         10A  O  9 18                            
+0007.30      A  17                                  ERRMSG('COMP NOT FOUND' 17) 
+0007.40      A            CMNAME        15A  O 11 18                            
+0007.50      A            ITNAME        30A  B 13 18                            
+0007.60      A  54                                  DSPATR(PR)                  
+0007.70      A          R COMPSFLR                  SFL                         
+0007.80      A*%%TS  SD  20230514  180646  JBLTD11     REL-V7R5M0  5770-WDS     
+0007.90      A            OP             1A  B  7  4                            
+0008.00      A            CMID          10A  O  7  7                            
+0008.10      A            CMNAME        15A  O  7 20                            
+0008.20      A            CMTEL         10S 0O  7 38                            
+0008.30      A          R COMPCTL                   SFLCTL(COMPSFLR)            
+0008.40      A*%%TS  SD  20230523  084106  JBLTD10     REL-V7R5M0  5770-WDS     
+0008.50      A                                      OVERLAY                     
+0008.60      A  31                                  SFLDSP      
+0008.70      A  32                                  SFLDSPCTL              
+0008.80      A  34                                  SFLCLR                 
+0008.90      A  33                                  SFLEND                 
+0009.00      A                                      SFLSIZ(0011)           
+0009.10      A                                      SFLPAG(0005)           
+0009.20      A                                      WINDOW(7 7 14 50)      
+0009.30      A            POS            4S 0H      SFLRCDNBR              
+0009.40      A                                  6  4'OP'                   
+0009.50      A                                      DSPATR(UL)             
+0009.60      A                                  6  7'ID'                   
+0009.70      A                                      DSPATR(UL)                  
+0009.80      A                                  6 20'NAME'                      
+0009.90      A                                      DSPATR(UL)                  
+0010.00      A                                  6 38'TELEPHONE'                 
+0010.10      A                                      DSPATR(UL)                  
+0010.20      A                                  4  5'1 - Select company, press  
+0010.30      A                                       confirm'                   
+0010.40      A                                      DSPATR(UL)                  
+0010.50      A                                      COLOR(YLW)                  
+        ****************** End of data **************************************** 
