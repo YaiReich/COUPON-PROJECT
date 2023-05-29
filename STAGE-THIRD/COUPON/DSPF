@@ -1,0 +1,74 @@
+        *************** Beginning of data ************************************* 
+0000.10      A*%%TS  SD  20230529  195402  JBLTD10     REL-V7R5M0  5770-WDS     
+0000.20      A*%%EC                                                             
+0000.30      A                                      DSPSIZ(24 80 *DS3)          
+0000.40      A                                      CF02(02 'EXEC')             
+0000.50      A                                      CA03(03 'EXIT')             
+0000.60      A                                      CF06(06 'NEW')              
+0000.70      A                                      CA12(12 'BACK')             
+0000.80      A          R TOP                                                   
+0000.90      A*%%TS  SD  20230529  194611  JBLTD10     REL-V7R5M0  5770-WDS     
+0001.00      A                                  3 17'COUPON LIST FOR COMPANY'   
+0001.10      A                                      DSPATR(UL)                  
+0001.20      A                                  1 64'DATE:'                     
+0001.30      A                                      COLOR(RED)                  
+0001.40      A                                  1 70DATE                        
+0001.50      A                                      COLOR(RED)                  
+0001.60      A                                      EDTWRD('  /  /  ')          
+0001.70      A            CMNAME        15A  O  3 42COLOR(YLW)                  
+0001.80      A*                                 5 28'ITEM NAME'                 
+0001.90      A* 51                                  DSPATR(UL)                  
+0002.00      A* 51        ITNAME        30   O  5 39                            
+0002.10      A          R BOT                                                   
+0002.20      A*%%TS  SD  20230529  121821  JBLTD10     REL-V7R5M0  5770-WDS     
+0002.30      A                                      OVERLAY                     
+0002.40      A                                 20  3'-------------------------- 
+0002.50      A                                      --------------------------- 
+0002.60      A                                      -----'                     
+0002.70      A                                 21  4'F3-EXIT'               
+0002.80      A                                 21 14'F6-NEW'                
+0002.90      A                                 21 23'F8-MORE/LESS'          
+0003.00      A                                 23  4'2-UPDATE'              
+0003.10      A                                 23 14'4-DELETE'              
+0003.20      A                                 21 14'F2-COMMIT'             
+0003.30      A                                 21 25'F12-CANCEL'            
+0003.40      A          R SFL                       SFL                     
+0003.50      A*%%TS  SD  20230529  195402  JBLTD10     REL-V7R5M0  5770-WDS 
+0003.60      A            OP             1A  B  7  2                        
+0003.70      A            CPID          10A  O  7  5                
+0003.80      A            CPNAME        30A  O  7 16                
+0003.90      A*           ITNAME        30A  O  7 47                
+0004.00      A                                  8  3'SUM'           
+0004.10      A                                      DSPATR(UL)      
+0004.20      A            CPSUM          6Y 2O  8  7EDTCDE(Z)       
+0004.30      A                                  8 16'STR DATE'      
+0004.40      A                                      DSPATR(UL)      
+0004.50      A            STARTDATE     10A  O  8 25                
+0004.60      A                                  8 38'END DATE' 
+0004.70      A                                      DSPATR(UL)               
+0004.80      A            ENDDATE       10A  O  8 47                         
+0004.90      A                                  8 14'|'                      
+0005.00      A                                  8 36'|'                      
+0005.10      A                                  9  3'PUBLISH DATE'           
+0005.20      A                                      DSPATR(UL)               
+0005.30      A            PUBLISDATE    10A  O  9 16                         
+0005.40      A          R SFLCTL                    SFLCTL(SFL)              
+0005.50      A*%%TS  SD  20230528  150929  JBLTD10     REL-V7R5M0  5770-WDS  
+0005.60      A                                      SFLSIZ(0007)            
+0005.70      A                                      SFLPAG(0003)            
+0005.80      A                                      OVERLAY                 
+0005.90      A  31                                  SFLDSP                  
+0006.00      A  32                                  SFLDSPCTL               
+0006.10      A  34                                  SFLCLR                  
+0006.20      A  33                                  SFLEND(*MORE)           
+0006.30      A                                      SFLDROP(CF08)           
+0006.40      A            POS            4S 0H      SFLRCDNBR               
+0006.50      A                                  6  2'OP'                    
+0006.60      A                                      DSPATR(UL)    
+0006.70      A                                  6  5'ID COUPON'                
+0006.80      A                                      DSPATR(UL)                 
+0006.90      A                                  6 16'COUPON NAME'              
+0007.00      A                                      DSPATR(UL)                 
+0007.10      A                                  6 48'ITEM NAME'                
+0007.20      A                                      DSPATR(UL)                 
+        ****************** End of data ****************************************
