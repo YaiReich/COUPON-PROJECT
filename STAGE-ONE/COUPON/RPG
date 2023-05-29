@@ -14,7 +14,6 @@
 0017.00 DY2                              4  0                                  
 0018.00 C*                                                                     
 0024.00 C     *IN03         DOWEQ     *OFF                                     
-0025.00 C*                  SETON                                        08    
 0026.00 C                   WRITE     TOP                                       
 0027.00 C                   WRITE     BOT                                       
 0029.00 C                   EXSR      FILLSFL                                   
@@ -24,8 +23,7 @@
 0038.00 C                   SETON                                        LR     
 0039.00 C*                                                                      
 0040.00 C     FILLSFL       BEGSR                                               
-0041.00 C                   SETON                                        3234   
-0041.01 C*                  SETOFF                                       3133   
+0041.00 C                   SETON                                        3234    
 0042.00 C                   WRITE     SFLCTL                                    
 0043.00 C                   SETOFF                                       34     
 0044.00 C                   Z-ADD     0             RRN               4 0       
