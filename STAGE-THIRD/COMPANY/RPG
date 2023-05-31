@@ -116,15 +116,15 @@
 0016.03 C                   ENDSR                                            
 0016.04 C*                                                                   
 0016.05 C     SEND2         BEGSR                                            
-0016.06 C                   MOVE      'NO ITEM   '  ITID                     
+0016.06 C                   MOVE      'NO ITEM   '  SNDID                     
 0016.07 C                   CALL      'RCOUPON'     SEND2P                   
 0016.08 C                   ENDSR                                            
 0016.09 C*                                                                   
 0017.00 C     *INZSR        BEGSR                                            
 0018.00 C     SEND1P        PLIST                                            
-0019.00 C                   PARM                    CMID             10      
+0019.00 C                   PARM                    CMID                   
 0019.01 C     SEND2P        PLIST                                            
-0019.02 C                   PARM                    CMID             10      
-0019.03 C                   PARM                    ITID             10      
+0019.02 C                   PARM                    CMID                   
+0019.03 C                   PARM                    SNDID             10      
 0020.00 C                   ENDSR                                               
         ****************** End of data **************************************** 
