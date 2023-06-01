@@ -115,7 +115,7 @@
 0016.02 C                   CALL      'RITEM'       SEND1P                   
 0016.03 C                   ENDSR                                            
 0016.04 C*                                                                   
-0016.05 C     SEND2         BEGSR                                            
+0016.05 C     CALLCOUPON    BEGSR                                            
 0016.06 C                   MOVE      'NO ITEM   '  SNDID                     
 0016.07 C                   CALL      'RCOUPON'     SEND2P                   
 0016.08 C                   ENDSR                                            
