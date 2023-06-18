@@ -1,0 +1,155 @@
+        *************** Beginning of data ************************************
+0001.00 FCUSTPF    UF A E           K DISK                                    
+0002.00 FCOMPF     IF A E           K DISK                                    
+0003.00 FCPCUSCMLF4IF A E           K DISK                                    
+0004.00 FDCUST     CF   E             WORKSTN                                 
+0005.00 F                                     SFILE(SFLR:RRN)                 
+0006.00 C*                                                                    
+0007.00 C                                                                     
+0008.00 C     CCCMID        IFNE      'NO        '                            
+0009.00 C                   SETON                                        30   
+0010.00 C     CCCMID        CHAIN     RCOMP                              9898 
+0011.00 C                   ENDIF                                             
+0012.00 C     *IN03         DOWEQ     *OFF                                    
+0013.00 C                   SETON                                        50   
+0014.00 C                   WRITE     TOP                                     
+0015.00 C                   WRITE     BOT                                     
+0016.00 C                   EXSR      FILLSFL  
+0017.00 C                   EXFMT     SFLCTL                                   
+0018.00 C                   SETOFF                                       50    
+0019.00 C     *IN30         IFEQ      *OFF                                     
+0020.00 C     *IN06         IFEQ      *ON                                      
+0021.00 C                   EXSR      NEW                                      
+0022.00 C                   ELSE                                               
+0023.00 C                   EXSR      TIPUL                                    
+0024.00 C                   ENDIF                                              
+0025.00 C                   ENDIF                                              
+0026.00 C                   ENDDO                                              
+0027.00 C                   SETON                                        LR    
+0028.00 C*                                                                     
+0029.00 C     FILLSFL       BEGSR                                              
+0030.00 C                   SETON                                        3234  
+0031.00 C                   WRITE     SFLCTL                                   
+0032.00 C                   SETOFF                                       34    
+0033.00 C                   Z-ADD     0             RRN               4 0       
+0034.00 C     *IN30         IFEQ      *ON                                       
+0035.00 C     CCCMID        SETLL     RCPCUSTCMP                         9999   
+0036.00 C     CCCMID        READE     RCPCUSTCMP                           9999 
+0037.00 C  N99CCCSID        CHAIN     RCUST                              9999   
+0038.00 C                   ELSE                                                
+0039.00 C     *LOVAL        SETLL     RCUST                              9999   
+0040.00 C                   READ      RCUST                                9999 
+0041.00 C                   ENDIF                                               
+0042.00 C     *IN99         DOWEQ     *OFF                                      
+0043.00 C                   MOVE      *BLANKS       OP                          
+0044.00 C                   ADD       1             RRN                         
+0045.00 C                   WRITE     SFLR                                      
+0046.00 C     *IN30         IFEQ      *ON                                       
+0047.00 C     CMCS          SETGT     RCPCUSTCMP                         9999   
+0048.00 C     CCCMID        READE     RCPCUSTCMP                           9999 
+0049.00 C  N99CCCSID        CHAIN     RCUST                              9999   
+0050.00 C                   ELSE                                                
+0051.00 C                   READ      RCUST                                9999 
+0052.00 C                   ENDIF                                               
+0053.00 C                   ENDDO                                               
+0054.00 C     RRN           IFGT      0                                         
+0055.00 C                   SETON                                        3133   
+0056.00 C                   Z-ADD     1             POS                         
+0057.00 C                   ELSE                                                
+0058.00 C                   SETOFF                                       3133   
+0059.00 C                   ENDIF                                               
+0060.00 C                   ENDSR                                               
+0061.00 C*                                                                      
+0062.00 C     TIPUL         BEGSR                                               
+0063.00 C                   READC     SFLR                                 9999 
+0064.00 C     *IN99         DOWEQ     *OFF                                
+0065.00 C     OP            IFEQ      '2'                                       
+0066.00 C                   EXSR      UPDATE1                                   
+0067.00 C                   ENDIF                                               
+0068.00 C     OP            IFEQ      '4'                                       
+0069.00 C                   EXSR      DELETE1                                   
+0070.00 C                   ENDIF                                               
+0071.00 C     OP            IFEQ      '8'                                       
+0072.00 C                   EXSR      SEND8                                     
+0073.00 C                   ENDIF                                               
+0074.00 C     OP            IFEQ      '9'                                       
+0075.00 C                   EXSR      SEND9                                     
+0076.00 C                   ENDIF                                               
+0077.00 C                   READC     SFLR                                 9999 
+0078.00 C                   ENDDO                                               
+0079.00 C                   ENDSR                                               
+0080.00 C*                                            
+0081.00 C     NEW           BEGSR                                              
+0082.00 C                   SETON                                        56    
+0083.00 C                   WRITE     TOP                                      
+0084.00 C                   WRITE     BOT                                      
+0085.00 C                   EXSR      EMPTY                                    
+0086.00 C     *IN03         DOWEQ     *OFF                                     
+0087.00 C     *IN12         ANDEQ     *OFF                                     
+0088.00 C     *IN02         ANDEQ     *OFF                                     
+0089.00 C                   EXFMT     FIELDS                                   
+0090.00 C   02              DO                                                 
+0091.00 C     CSTID         SETLL     RCUST                                  45
+0092.00 C  N45              WRITE     RCUST                                    
+0093.00 C   45              SETOFF                                       02    
+0094.00 C                   ENDDO                                              
+0095.00 C                   ENDDO                                              
+0096.00 C                   SETOFF                                       56    
+0097.00 C                   ENDSR                                             
+0098.00 C*                                                                    
+0099.00 C     UPDATE1       BEGSR                                             
+0100.00 C                   SETON                                        52   
+0101.00 C                   WRITE     TOP                                     
+0102.00 C                   WRITE     BOT                                     
+0103.00 C     *IN03         DOWEQ     *OFF                                    
+0104.00 C     *IN12         ANDEQ     *OFF                                    
+0105.00 C     *IN02         ANDEQ     *OFF                                    
+0106.00 C     CSTID         CHAIN     RCUST                              4444 
+0107.00 C                   EXFMT     FIELDS                                  
+0108.00 C   02              DO                                                
+0109.00 C  N44              UPDATE    RCUST                                   
+0110.00 C   44              SETOFF                                       02   
+0111.00 C                   ENDDO                                             
+0112.00 C                   ENDDO                          
+0113.00 C                   SETOFF                                       52   
+0114.00 C                   ENDSR                                             
+0115.00 C*                                                                    
+0116.00 C     DELETE1       BEGSR                                             
+0117.00 C                   SETON                                        54   
+0118.00 C                   WRITE     TOP                                     
+0119.00 C                   WRITE     BOT                                     
+0120.00 C                   EXFMT     FIELDS                                  
+0121.00 C   02              DO                                                
+0122.00 C     CSTID         CHAIN     RCUST                              4444 
+0123.00 C  N44              DELETE    RCUST                                   
+0124.00 C                   ENDDO                                             
+0125.00 C                   SETON                                        54   
+0126.00 C                   ENDSR                                             
+0127.00 C*                                                                    
+0128.00 C     SEND8         BEGSR  
+0129.00 C                   Z-ADD     8             SHOWTYPE    
+0130.00 C                   CALL      'RCPCUSCM2'   SENDP       
+0131.00 C                   ENDSR                               
+0132.00 C*                                                      
+0133.00 C     SEND9         BEGSR                               
+0134.00 C                   Z-ADD     9             SHOWTYPE    
+0135.00 C                   CALL      'RCPCUSCM2'   SENDP       
+0136.00 C                   ENDSR                               
+0137.00 C*                                                      
+0138.00 C     EMPTY         BEGSR                               
+0139.00 C                   MOVE      *BLANKS       CSTID       
+0140.00 C                   MOVE      *BLANKS       CSTNAME     
+0141.00 C                   Z-ADD     0             CSTTEL      
+0142.00 C                   ENDSR                               
+0143.00 C*                                                      
+0144.00 C     *INZSR        BEGSR          
+0145.00 C     *ENTRY        PLIST                                               
+0146.00 C                   PARM                    CCCMID           10         
+0147.00 C     SENDP         PLIST                                               
+0148.00 C                   PARM                    CSTID            10         
+0149.00 C                   PARM                    SHOWTYPE          1 0       
+0150.00 C     CMCS          KLIST                                               
+0151.00 C                   KFLD                    CCCMID                      
+0152.00 C                   KFLD                    CCCSID                      
+0153.00 C                   ENDSR                                               
+        ****************** End of data **************************************** 
