@@ -1,0 +1,36 @@
+0001.00 FDMENU     CF   E             WORKSTN                                 
+0002.00 C*                                                                    
+0003.00 C                   EXFMT     MENU                                    
+0004.00 C     *IN03         DOWEQ     *OFF                                    
+0005.00 C     OP            IFEQ      '1'                                     
+0006.00 C                   EXSR      SENDCOMP                                
+0007.00 C                   ENDIF                                             
+0008.00 C     OP            IFEQ      '2'                                     
+0009.00 C                   EXSR      SENDITEM                                
+0010.00 C                   ENDIF                                             
+0011.00 C     OP            IFEQ      '3'                                     
+0012.00 C                   EXSR      SENDCUST                                
+0013.00 C                   ENDIF                                             
+0014.00 C                   EXFMT     MENU                                    
+0015.00 C                   ENDDO                                             
+0016.00 C                   SETON                                        LR   
+0017.00 C*                                                          
+0018.00 C     SENDCOMP      BEGSR                                   
+0019.00 C                   CALL      'RCOMP'                       
+0020.00 C                   ENDSR                                   
+0021.00 C*                                                          
+0022.00 C     SENDITEM      BEGSR                                   
+0023.00 C                   MOVE      'ALL       '  ID              
+0024.00 C                   CALL      'RITEM'       SENDP           
+0025.00 C                   ENDSR                                   
+0026.00 C*                                                          
+0027.00 C     SENDCUST      BEGSR                                   
+0028.00 C                   MOVE      'NO        '  ID              
+0029.00 C                   CALL      'RCUST'       SENDP           
+0030.00 C                   ENDSR                                   
+0031.00 C*                                                          
+0032.00 C     *INZSR        BEGSR  
+0033.00 C     SENDP         PLIST                                               
+0034.00 C                   PARM                    ID               10         
+0035.00 C                   ENDSR                                               
+        ****************** End of data **************************************** 
