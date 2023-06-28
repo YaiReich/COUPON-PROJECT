@@ -1,0 +1,14 @@
+0001.00                                             UNIQUE     
+0002.00                 R RCHAIR                               
+0003.00                   CHSHID        10  0                  
+0004.00                   CHLIN          2  0                  
+0005.00                   CHPOS          2  0                  
+0006.00                   CHSUBID       10  0                  
+0007.00                   CHCRDID       10  0                  
+0007.02                   CHTIME        26                     
+0007.03                   CHSTS          1                     
+0008.00                 K CHSHID                               
+0009.00                 K CHLIN                                
+0010.00                 K CHPOS                                
+        ****************** End of data ************************
+ PF OF CHAIRS 
